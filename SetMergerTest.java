@@ -16,7 +16,7 @@ public class SetMergerTest {
 
     @Before
     public void setUp() throws Exception {
-        for (int i = 0; i < 10000; ++i) {
+        for (int i = 0; i < 50000; ++i) {
             int num = random.nextInt();
             if (!one.contains(num)) {
                 one.add(num);
@@ -31,7 +31,7 @@ public class SetMergerTest {
     @After
     public void tearDown() throws Exception {
         for (int i = 0; i < duration.length; ++i) {
-            System.out.println(String.valueOf(i + 1) + duration[i]);
+            System.out.println((i + 1) + " : " + duration[i]);
         }
     }
 

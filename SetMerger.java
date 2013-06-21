@@ -112,7 +112,7 @@ public class SetMerger {
             b = 1 + random.nextInt() % (Integer.MAX_VALUE - 1);
         }
 
-        private <E> int hash(E entry) {
+        private int hash(E entry) {
             return Math.abs(((a * entry.hashCode() + b) % PRIME) % table.length);
         }
 
@@ -190,6 +190,10 @@ public class SetMerger {
             private void clearTable() {
                 int power = table.length;
                 table = (E[])new Object[power];
+            }
+
+            private int hash(E entry) {
+                return Math.abs(((a * entry.hashCode() + b) % PRIME) % table.length);
             }
         }
     }

@@ -12,11 +12,11 @@ public class SetMergerTest {
     private List two = new LinkedList();
 
     private Random random = new Random(SEED);
-    private static long[] duration = new long[4];
+    private static long[] duration = new long[7];
 
     @Before
     public void setUp() throws Exception {
-        for (int i = 0; i < 100000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             int num = random.nextInt();
             if (!one.contains(num)) {
                 one.add(num);
@@ -30,10 +30,9 @@ public class SetMergerTest {
 
     @After
     public void tearDown() throws Exception {
-        System.out.println("first: " + duration[0] +
-                "\nsecond: " + duration[1] +
-                "\nthird: " + duration[2] +
-                "\nfourth: " + duration[3]);
+        for (int i = 0; i < duration.length; ++i) {
+            System.out.println(String.valueOf(i + 1) + duration[i]);
+        }
     }
 
     @Test
@@ -86,5 +85,44 @@ public class SetMergerTest {
 
         long endTime = System.nanoTime();
         duration[3] = endTime - startTime;
+    }
+
+    @Test
+    public void testMergeSequences5() throws Exception {
+        long startTime = System.nanoTime();
+
+        SetMerger merger = new SetMerger();
+        List result = merger.mergeSequences5(one, two);
+        Set set = new HashSet(result);
+        assert set.size() == result.size();
+
+        long endTime = System.nanoTime();
+        duration[4] = endTime - startTime;
+    }
+
+    @Test
+    public void testMergeSequences6() throws Exception {
+        long startTime = System.nanoTime();
+
+        SetMerger merger = new SetMerger();
+        List result = merger.mergeSequences6(one, two);
+        Set set = new HashSet(result);
+        assert set.size() == result.size();
+
+        long endTime = System.nanoTime();
+        duration[5] = endTime - startTime;
+    }
+
+    @Test
+    public void testMergeSequences7() throws Exception {
+        long startTime = System.nanoTime();
+
+        SetMerger merger = new SetMerger();
+        List result = merger.mergeSequences7(one, two);
+        Set set = new HashSet(result);
+        assert set.size() == result.size();
+
+        long endTime = System.nanoTime();
+        duration[6] = endTime - startTime;
     }
 }
